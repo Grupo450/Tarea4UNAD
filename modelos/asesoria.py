@@ -6,12 +6,26 @@ class Asesoria(Servicio):
 
         super().__init__(nombre, precio_base)
 
-        self.horas = horas
+        self.__horas = horas
 
-    def calcular_costo(self):
+    def get_horas(self):
+        return self.__horas
 
-        return self.precio_base * self.horas
+    # Sobrecarga con descuento opcional
+    def calcular_costo(self, descuento=0):
+
+        costo = self.get_precio_base() * self.__horas
+
+        if descuento > 0:
+            costo -= costo * (descuento / 100)
+
+        return costo
 
     def descripcion(self):
 
-        return "Asesoría especializada" 
+        return "Asesoría especializada"
+
+    # Disponibilidad simulada
+    def consultar_disponibilidad(self):
+
+        return True 

@@ -1,4 +1,5 @@
 from excepciones.excepciones import ReservaError
+from excepciones.excepciones import ServicioError
 
 class Reserva:
 
@@ -7,31 +8,47 @@ class Reserva:
         if duracion <= 0:
             raise ReservaError("La duración debe ser mayor a cero")
 
-        self.cliente = cliente
-        self.servicio = servicio
-        self.duracion = duracion
-        self.estado = "Pendiente"
+        self.__cliente = cliente
+        self.__servicio = servicio
+        self.__duracion = duracion
+        self.__estado = "Pendiente"
+
+    # Getters
+    def get_cliente(self):
+        return self.__cliente
+
+    def get_servicio(self):
+        return self.__servicio
+
+    def get_duracion(self):
+        return self.__duracion
+
+    def get_estado(self):
+        return self.__estado
 
     def confirmar(self):
 
-        self.estado = "Confirmada"
+        self.__estado = "Confirmada"
 
     def cancelar(self):
 
-        self.estado = "Cancelada"
+        self.__estado = "Cancelada"
 
     def procesar(self):
 
         try:
 
-            costo = self.servicio.calcular_costo()
+            if not self.__servicio.consultar_disponibilidad():
+                raise ServicioError("El servicio no está disponible")
+
+            costo = self.__servicio.calcular_costo()
 
             self.confirmar()
 
             return f"Reserva procesada correctamente. Total: {costo}"
 
-        except Exception as e:
+        except ServicioError as e:
 
             raise ReservaError(
-                "Error al procesar la reserva"
+                f"Error al procesar la reserva: {e}"
             ) from e

@@ -6,3 +6,17 @@
 2026-05-07 23:38:38,513 - ERROR - La duración debe ser mayor a cero
 2026-05-07 23:39:53,325 - ERROR - Nombre vacío
 2026-05-07 23:39:53,326 - ERROR - La duración debe ser mayor a cero
+2026-05-11 22:27:10,030 - INFO - Cliente creado correctamente
+2026-05-11 22:27:10,031 - ERROR - Error al crear cliente inválido: Nombre vacío
+2026-05-11 22:27:10,032 - INFO - Reserva de sala creada correctamente
+2026-05-11 22:27:10,032 - INFO - Alquiler de equipo creado correctamente
+2026-05-11 22:27:10,032 - INFO - Asesoría creada correctamente
+2026-05-11 22:27:10,033 - ERROR - Error en reserva inválida: La duración debe ser mayor a cero
+2026-05-11 22:27:10,033 - INFO - Reserva cancelada correctamente
+2026-05-11 22:27:15,794 - INFO - Cliente creado correctamente
+2026-05-11 22:27:15,795 - ERROR - Error al crear cliente inválido: Nombre vacío
+2026-05-11 22:27:15,796 - INFO - Reserva de sala creada correctamente
+2026-05-11 22:27:15,797 - INFO - Alquiler de equipo creado correctamente
+2026-05-11 22:27:15,797 - INFO - Asesoría creada correctamente
+2026-05-11 22:27:15,800 - ERROR - Error en reserva inválida: La duración debe ser mayor a cero
+2026-05-11 22:27:15,802 - INFO - Reserva cancelada correctamente

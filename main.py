@@ -3,14 +3,19 @@ from modelos.sala import ReservaSala
 from modelos.equipo import AlquilerEquipo
 from modelos.asesoria import Asesoria
 from modelos.reserva import Reserva
-
 import logging
+
+from excepciones.excepciones import (
+    ClienteError,
+    ServicioError,
+    ReservaError
+) 
 
 # CONFIGURACION DE LOGS
 
 logging.basicConfig(
     filename='logs.txt',
-    level=logging.ERROR,
+    level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
@@ -27,9 +32,13 @@ try:
 
     print(cliente1.mostrar_info())
 
-except Exception as e:
+    logging.info("Cliente creado correctamente")
 
-    logging.error(e)
+except ClienteError as e:
+
+    logging.error(f"Error al crear cliente: {e}") 
+
+
 
 # OPERACION 2 INVALIDA
 
@@ -41,10 +50,11 @@ try:
         "123"
     )
 
-except Exception as e:
+except ClienteError as e:
 
     print("Error en cliente inválido")
-    logging.error(e)
+    logging.error(f"Error al crear cliente inválido: {e}")
+
 
 # OPERACION 3
 
@@ -59,9 +69,11 @@ try:
     print(sala1.descripcion())
     print(sala1.calcular_costo())
 
-except Exception as e:
+    logging.info("Reserva de sala creada correctamente")
 
-    logging.error(e)
+except ServicioError as e:
+
+    logging.error(f"Error en reserva de sala: {e}") 
 
 # OPERACION 4
 
@@ -75,10 +87,11 @@ try:
 
     print(equipo1.descripcion())
     print(equipo1.calcular_costo())
+    logging.info("Alquiler de equipo creado correctamente") 
 
-except Exception as e:
+except ServicioError as e:
 
-    logging.error(e)
+    logging.error(f"Error en alquiler de equipo: {e}") 
 
 # OPERACION 5
 
@@ -91,11 +104,12 @@ try:
     )
 
     print(asesoria1.descripcion())
-    print(asesoria1.calcular_costo())
+    print(asesoria1.calcular_costo())  
+    logging.info("Asesoría creada correctamente") 
 
-except Exception as e:
+except ServicioError as e:
 
-    logging.error(e)
+    logging.error(f"Error en asesoría: {e}") 
 
 # OPERACION 6
 
@@ -109,9 +123,10 @@ try:
 
     print(reserva1.procesar())
 
-except Exception as e:
+except ReservaError as e:
 
-    logging.error(e)
+    logging.error(f"Error al procesar reserva: {e}") 
+
 
 # OPERACION 7 INVALIDA
 
@@ -123,10 +138,10 @@ try:
         -5
     )
 
-except Exception as e:
+except ReservaError as e:
 
     print("Error en reserva inválida")
-    logging.error(e)
+    logging.error(f"Error en reserva inválida: {e}") 
 
 # OPERACION 8
 
@@ -134,11 +149,13 @@ try:
 
     reserva1.cancelar()
 
-    print("Estado:", reserva1.estado)
+    print("Estado:", reserva1.get_estado())
 
-except Exception as e:
+    logging.info("Reserva cancelada correctamente")
 
-    logging.error(e)
+except ReservaError as e:
+
+    logging.error(f"Error al cancelar reserva: {e}") 
 
 # OPERACION 9
 
@@ -150,9 +167,9 @@ try:
 
         print(servicio.descripcion())
 
-except Exception as e:
+except ServicioError as e: 
 
-    logging.error(e)
+    logging.error(f"Error general del sistema: {e}") 
 
 # OPERACION 10
 
@@ -162,7 +179,7 @@ try:
 
 except Exception as e:
 
-    logging.error(e)
+    logging.error(f"Error general del sistema: {e}") 
 
 else:
 
@@ -170,4 +187,4 @@ else:
 
 finally:
 
-    print("Programa finalizado")
+    print("Programa finalizado") 
